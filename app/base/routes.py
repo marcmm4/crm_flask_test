@@ -68,19 +68,6 @@ def create_user():
     return jsonify('success')
 
 
-@blueprint.route('/modify_user', methods=['POST'])
-def modify_user():
-    form_data = User(**request.form)
-    db_data = User.query.get(form_data.id)
-    if db_data.email != form_data.email:
-        db_data.email = form_data.email
-        db.session.commit()
-        return jsonify('success')
-    else:
-        return jsonify('no_change')
-    return jsonify('error')
-
-
 @blueprint.route('/logout')
 @login_required
 def logout():

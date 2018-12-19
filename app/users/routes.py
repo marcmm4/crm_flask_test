@@ -57,12 +57,14 @@ def modify_user():
 def add_user():
     users = User.query.all()
     newid = users[-1].id
-    user = User.query.filter_by(id=newid).first()
+    user = User()
     user.id = newid+1
-    user.username = 'changeme'
+    user.username = 'user'+str(user.id)
     user.email = 'changeme@test.com'
     user.firstname = 'First Name'
     user.lastname = 'Last Name'
+    db.session.add(user)
+    db.session.commit()
     modify_user_form = ModifyUserForm()
     return render_template('user.html', user=user, modify_user_form=modify_user_form)
 
