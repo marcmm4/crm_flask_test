@@ -1,0 +1,125 @@
+{% extends "base_site.html" %}
+
+{% block title %} User {{ user.username }} {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+  <!-- Animate.css -->
+  <link href="{{ url_for('static', filename='vendors/animate.css/animate.min.css') }}" rel="stylesheet">
+  <!-- Alertify -->
+  <link href="{{ url_for('static', filename='vendors/alertifyjs/css/alertify.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendors/alertifyjs/css/custom.alertify.css') }}" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <!--
+          <div class="title_left">
+            <h3>Plain Page</h3>
+          </div>
+          <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          -->
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="col-md-6 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Modify User </h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <br />
+              <form data-parsley-validate id="modify_user_form" class="form-horizontal form-label-left" method="post">
+                {{ modify_user_form.hidden_tag() }}
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Id </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    {{ modify_user_form.id(class="form-control", readonly="readonly", placeholder=user.id, value=user.id) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Username </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    {{ modify_user_form.username(class="form-control", readonly="readonly", placeholder=user.username, value=user.username) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Email </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    {{ modify_user_form.email(class="form-control", placeholder=user.email, value=user.email) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                     {{ modify_user_form.firstname(class="form-control", placeholder=user.firstname, value=user.firstname) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                   {{ modify_user_form.lastname(class="form-control", placeholder=user.lastname, value=user.lastname) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Password </label>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="password" class="form-control" value="password">
+                  </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                    <a class="btn btn-primary" id="modify_user_form_cancel" href="/management/users">Back </a>
+                    <button type="button" class="btn btn-success" id="modify_user_form_submit" onclick="modify_user_form()">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+
+ {{ super() }}
+  <!-- Alertify -->
+  <script src="{{ url_for('static', filename='vendors/alertifyjs/alertify.min.js') }}"></script>
+  <!-- Parsley -->
+  <script src="{{ url_for('static', filename='vendors/parsleyjs/dist/parsley.min.js') }}"></script>
+  <!-- User -->
+  <script src="{{ url_for('static', filename='build/js/user.js') }}"></script>
+{% endblock javascripts %}
+
